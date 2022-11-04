@@ -50,7 +50,7 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++11", "-Wall", "-Wold-style-cast", "-fno-rtti"]
+flags = ["-std=c++11", "-Wall", "-Wold-style-cast"]
 if env["mode"] != "debug":
 	flags += ["-Werror", "-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])
@@ -60,6 +60,8 @@ elif env["mode"] == "profile":
 	flags += ["-pg"]
 	env.Append(LINKFLAGS = ["-pg"])
 env.Append(CCFLAGS = flags)
+
+env.Append(CPPPATH=['/../asio/include'])
 
 # Always use `ar` to create the symbol table, and don't use ranlib at all, since it fails to preserve
 # LTO information, even when passed the plugin path, when run in Steam's "Scout" runtime.

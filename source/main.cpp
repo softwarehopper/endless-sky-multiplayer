@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Audio.h"
+#include "AsioTest.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -75,6 +76,9 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
+	AsioTest test = AsioTest();
+	test.SendAsioData();
+	
 	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)
